@@ -18,6 +18,7 @@ const makeSelectAccountId = createSelector(selectUsersDomain, substate => substa
 const makeSelectName = createSelector(selectUsersDomain, substate => substate.userForm.name);
 const makeSelectEmail = createSelector(selectUsersDomain, substate => substate.userForm.email);
 const makeSelectPassword = createSelector(selectUsersDomain, substate => substate.userForm.password);
+const makeSelectPermissions = createSelector(selectUsersDomain, substate => substate.userForm.permissions);
 
 const makeSelectUsersById = id =>
   createSelector(selectUsersList, usersList => {
@@ -35,5 +36,6 @@ export {
   makeSelectName,
   makeSelectEmail,
   makeSelectPassword,
+  makeSelectPermissions,
   makeSelectUsersById,
 };

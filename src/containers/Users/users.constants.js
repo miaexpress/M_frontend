@@ -6,6 +6,10 @@ export const ADD_USERS_REQUEST = 'users/ADD_USERS_REQUEST';
 export const ADD_USERS_SUCCESS = 'users/ADD_USERS_SUCCESS';
 export const ADD_USERS_FAILURE = 'users/ADD_USERS_FAILURE';
 
+export const DEL_USERS_REQUEST = 'users/DEL_USERS_REQUEST';
+export const DEL_USERS_SUCCESS = 'users/DEL_USERS_SUCCESS';
+export const DEL_USERS_FAILURE = 'users/DEL_USERS_FAILURE';
+
 export const MODIFY_USERS_REQUEST = 'users/MODIFY_USERS_REQUEST';
 export const MODIFY_USERS_SUCCESS = 'users/MODIFY_USERS_SUCCESS';
 export const MODIFY_USERS_FAILURE = 'users/MODIFY_USERS_FAILURE';
@@ -20,4 +24,5 @@ export const ON_CHANGE_ACCOUNTID = 'users/ON_CHANGE_ACCOUNTID'
 export const ON_CHANGE_NAME = 'users/ON_CHANGE_NAME'
 export const ON_CHANGE_EMAIL = 'users/ON_CHANGE_EMAIL'
 export const ON_CHANGE_PASSWORD = 'users/ON_CHANGE_PASSWORD'
+export const ON_CHANGE_PERMISSIONS = 'users/ON_CHANGE_PERMISSIONS'
 

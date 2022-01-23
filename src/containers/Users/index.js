@@ -9,6 +9,7 @@ import { Row, Col, Button } from 'antd';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import {
+  delUsersAction,
   getUsersAction,
   handleAddModalShowAction,
   handleModifyModalShowAction,
@@ -18,7 +19,8 @@ import reducer from './users.reducer';
 import saga from './users.saga';
 
 import AddUserModal from './AddUserModal';
-import PostTable from './UsersTable';
+import ModifyUserModal from './ModifyUserModal';
+import UsersTable from './UsersTable';
 
 const key = 'users';
 
@@ -30,6 +32,7 @@ function Users(props) {
     props.getUsers();
   }, []);
 
+  const [modifyingId, setModifyingId] = React.useState(0);
   return (
     <>
       <Helmet>
@@ -37,17 +40,22 @@ function Users(props) {
         <meta name="Users" content="Users List" />
       </Helmet>
 
-      <div style={{ 'marginLeft': '40px', 'marginBottom': '10px' }}>
-        <h1 style={{ 'fontSize': 'x-large' }}> Users List </h1>
+      <div style={{ marginLeft: '40px', marginBottom: '10px' }}>
+        <h1 style={{ fontSize: 'x-large' }}> Users List </h1>
       </div>
 
       <Row>
         <Col span={24}>
-          <PostTable onCheckboxChange={props.onChangeCheckbox} onAttachButtonClick={props.handleAttachmentModalShow} />
+          <UsersTable
+            onModifyUser={props.handleModifyModalShow}
+            setModifyingId={setModifyingId}
+            delUsers={id => props.delUsers(id)}
+          />
         </Col>
       </Row>
 
       <AddUserModal />
+      <ModifyUserModal modifyingId={modifyingId} />
       <div style={{ marginBottom: 16 }}>
         <Button type="primary" onClick={props.handleAddModalShow}>
           Add
@@ -58,18 +66,20 @@ function Users(props) {
 }
 
 Users.propTypes = {
-  getPosts: PropTypes.func,
+  getUsers: PropTypes.func,
   handleAddModalShow: PropTypes.func,
-  onChangeCheckbox: PropTypes.func,
+  handleModifyModalShow: PropTypes.func,
+  delUsers: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({});
 
 const mapDispatchToProps = dispatch => ({
   getUsers: () => dispatch(getUsersAction()),
+  delUsers: id => dispatch(delUsersAction(id)),
   handleAddModalShow: () => dispatch(handleAddModalShowAction()),
-  handleModifyModalShowAction: () => dispatch(handleModifyModalShowAction()),
-  modifyUsersAction: (id, value) => dispatch(modifyUsersAction(id, value)),
+  handleModifyModalShow: () => dispatch(handleModifyModalShowAction()),
+  modifyUsers: id => dispatch(modifyUsersAction(id)),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

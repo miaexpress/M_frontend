@@ -1,13 +1,31 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { getUsersSuccess, getUsersFailure, addUsersFailure, addUsersSuccess, addUsersAction, getUsersAction, modifyUsersSuccess, modifyUsersFailure } from './users.actions';
-import { GET_USERS_REQUEST, ADD_USERS_REQUEST, MODIFY_USERS_REQUEST } from './users.constants';
-import { getUsersAPI, postUsersAPI, putUsersAPI } from './users.api';
+import {
+  getUsersSuccess,
+  getUsersFailure,
+  addUsersFailure,
+  addUsersSuccess,
+  addUsersAction,
+  delUsersSuccess,
+  delUsersFailure,
+  getUsersAction,
+  modifyUsersSuccess,
+  modifyUsersFailure,
+} from './users.actions';
+import {
+  GET_USERS_REQUEST,
+  ADD_USERS_REQUEST,
+  MODIFY_USERS_REQUEST,
+  DEL_USERS_REQUEST,
+  DEL_USERS_SUCCESS,
+} from './users.constants';
+import { getUsersAPI, postUsersAPI, putUsersAPI, delUsersAPI } from './users.api';
 import {
   makeSelectAccountId,
   makeSelectName,
   makeSelectEmail,
   makeSelectPassword,
   makeSelectUsersById,
+  makeSelectPermissions,
 } from './users.selectors';
 
 export function* getUsersSaga() {
@@ -24,13 +42,10 @@ export function* postUsersSaga() {
   const name = yield select(makeSelectName);
   const email = yield select(makeSelectEmail);
   const password = yield select(makeSelectPassword);
-  
-  //TODO: update to dynamic value
-  const createdBy = 1;
-  const permissions = 'user';
+  const permissions = yield select(makeSelectPermissions);
 
   try {
-    yield call(postUsersAPI, { accountId, name, email, password,createdBy, permissions });
+    yield call(postUsersAPI, { accountId, name, email, password, permissions });
     yield put(addUsersSuccess());
     yield put(getUsersAction());
   } catch (error) {
@@ -43,9 +58,10 @@ export function* putUsersSaga({ payload: id }) {
   const name = yield select(makeSelectName);
   const email = yield select(makeSelectEmail);
   const password = yield select(makeSelectPassword);
+  const permissions = yield select(makeSelectPermissions);
 
   try {
-    yield call(putUsersAPI, { id, accountId, name, email, password });
+    yield call(putUsersAPI, { id, accountId, name, email, password, permissions });
     yield put(modifyUsersSuccess());
     yield put(getUsersAction());
   } catch (error) {
@@ -53,8 +69,19 @@ export function* putUsersSaga({ payload: id }) {
   }
 }
 
+export function* delUsersSaga({ payload: id }) {
+  try {
+    yield call(delUsersAPI, { id });
+    yield put(delUsersSuccess());
+    yield put(getUsersAction());
+  } catch (error) {
+    yield put(delUsersFailure(error));
+  }
+}
+
 export default function* usersSaga() {
   yield takeLatest(GET_USERS_REQUEST, getUsersSaga);
   yield takeLatest(ADD_USERS_REQUEST, postUsersSaga);
   yield takeLatest(MODIFY_USERS_REQUEST, putUsersSaga);
+  yield takeLatest(DEL_USERS_REQUEST, delUsersSaga);
 }

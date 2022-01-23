@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Button, Modal, Input, Icon, Upload, Switch } from 'antd';
-import { Admin, user } from 'utils/enum';
 
 import {
-  selectAddModalVisible,
-  selectAddModalLoading,
+  selectModifyModalVisible,
+  selectModifyModalLoading,
   makeSelectAccountId,
   makeSelectName,
   makeSelectPassword,
@@ -16,23 +15,24 @@ import {
   makeSelectPermissions,
 } from '../users.selectors';
 import {
-  handleAddModalCancelAction,
+  handleModifyModalCancelAction,
   onChangeAccountIdAction,
   onChangeEmailAction,
   onChangePasswordAction,
   onChangeNameAction,
   onChangePermissionsAction,
-  addUsersAction,
+  modifyUsersAction,
 } from '../users.actions';
+import { Admin, user } from 'utils/enum';
 
-function AddUserModal(props) {
+function ModifyUserModal(props) {
   return (
     <Modal
-      title="AddUser"
-      visible={props.addModalVisible}
-      onOk={props.addUsers}
-      confirmLoading={props.addModalLoading}
-      onCancel={props.handleAddModalCancel}
+      title="ModifyUser"
+      visible={props.modifyModalVisible}
+      onOk={() => props.modifyUsers(props.modifyingId)}
+      confirmLoading={props.modifyModalLoading}
+      onCancel={props.handleModifyModalCancel}
     >
       <div style={{ marginBottom: 16 }}>
         <Input placeholder="AccountId" onChange={props.onChangeAccountId} value={props.accountId} />
@@ -50,7 +50,8 @@ function AddUserModal(props) {
         <Switch
           checkedChildren="Admin"
           unCheckedChildren="User"
-          defaultChecked={false}
+          disabled={props.modifyingId === 1}
+          checked={props.permissions === user ? false : true}
           onChange={props.onChangePermissions}
         />
       </div>
@@ -58,14 +59,16 @@ function AddUserModal(props) {
   );
 }
 
-AddUserModal.propTypes = {
-  addModalVisible: PropTypes.bool,
-  addModalLoading: PropTypes.bool,
+ModifyUserModal.propTypes = {
+  modifyingId: PropTypes.number,
+  modifyModalVisible: PropTypes.bool,
+  modifyModalLoading: PropTypes.bool,
   accountId: PropTypes.string,
   name: PropTypes.string,
   email: PropTypes.string,
   password: PropTypes.string,
-  addUsers: PropTypes.func,
+  permissions: PropTypes.string,
+  modifyUsers: PropTypes.func,
   handleAddModalCancel: PropTypes.func,
   onChangeAccountId: PropTypes.func,
   onChangeName: PropTypes.func,
@@ -75,8 +78,8 @@ AddUserModal.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  addModalVisible: selectAddModalVisible,
-  addModalLoading: selectAddModalLoading,
+  modifyModalVisible: selectModifyModalVisible,
+  modifyModalLoading: selectModifyModalLoading,
   accountId: makeSelectAccountId,
   name: makeSelectName,
   email: makeSelectEmail,
@@ -85,8 +88,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addUsers: () => dispatch(addUsersAction()),
-  handleAddModalCancel: () => dispatch(handleAddModalCancelAction()),
+  modifyUsers: id => dispatch(modifyUsersAction(id)),
+  handleModifyModalCancel: () => dispatch(handleModifyModalCancelAction()),
   onChangeAccountId: e => dispatch(onChangeAccountIdAction(e.target.value)),
   onChangeName: e => dispatch(onChangeNameAction(e.target.value)),
   onChangeEmail: e => dispatch(onChangeEmailAction(e.target.value)),
@@ -96,4 +99,4 @@ const mapDispatchToProps = dispatch => ({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect, memo)(AddUserModal);
+export default compose(withConnect, memo)(ModifyUserModal);

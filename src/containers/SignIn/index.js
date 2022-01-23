@@ -46,9 +46,9 @@ function SignIn(props) {
         />
       </div>
       <Space>
-        <Button type="primary" onClick={() => props.history.push('/signup')}>
+        {/* <Button type="primary" onClick={() => props.history.push('/signup')}>
           Register
-        </Button>
+        </Button> */}
 
         <Button type="primary" onClick={props.postSignIn}>
           Sign In

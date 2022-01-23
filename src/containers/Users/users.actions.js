@@ -5,6 +5,9 @@ import {
   ADD_USERS_REQUEST,
   ADD_USERS_SUCCESS,
   ADD_USERS_FAILURE,
+  DEL_USERS_REQUEST,
+  DEL_USERS_SUCCESS,
+  DEL_USERS_FAILURE,
   MODIFY_USERS_REQUEST,
   MODIFY_USERS_SUCCESS,
   MODIFY_USERS_FAILURE,
@@ -16,6 +19,7 @@ import {
   ON_CHANGE_NAME,
   ON_CHANGE_EMAIL,
   ON_CHANGE_PASSWORD,
+  ON_CHANGE_PERMISSIONS,
 } from './users.constants';
 
 export const getUsersAction = payload => ({ type: GET_USERS_REQUEST, payload });
@@ -25,6 +29,10 @@ export const getUsersFailure = payload => ({ type: GET_USERS_FAILURE, payload })
 export const addUsersAction = payload => ({ type: ADD_USERS_REQUEST, payload });
 export const addUsersSuccess = payload => ({ type: ADD_USERS_SUCCESS, payload });
 export const addUsersFailure = payload => ({ type: ADD_USERS_FAILURE, payload });
+
+export const delUsersAction = payload => ({ type: DEL_USERS_REQUEST, payload });
+export const delUsersSuccess = payload => ({ type: DEL_USERS_SUCCESS, payload });
+export const delUsersFailure = payload => ({ type: DEL_USERS_FAILURE, payload });
 
 export const modifyUsersAction = payload => ({ type: MODIFY_USERS_REQUEST, payload });
 export const modifyUsersSuccess = payload => ({ type: MODIFY_USERS_SUCCESS, payload });
@@ -40,3 +48,4 @@ export const onChangeAccountIdAction = payload => ({ type: ON_CHANGE_ACCOUNTID, 
 export const onChangeNameAction = payload => ({ type: ON_CHANGE_NAME, payload });
 export const onChangeEmailAction = payload => ({ type: ON_CHANGE_EMAIL, payload });
 export const onChangePasswordAction = payload => ({ type: ON_CHANGE_PASSWORD, payload });
+export const onChangePermissionsAction = payload => ({ type: ON_CHANGE_PERMISSIONS, payload });
