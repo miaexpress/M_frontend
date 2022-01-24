@@ -17,9 +17,10 @@ import {
 import reducer from './zones.reducer';
 import saga from './zones.saga';
 
-import AddUserModal from './AddZoneModal';
-import ModifyUserModal from './ModifyZoneModal';
-import UsersTable from './ZonesMap';
+import AddZoneModal from './AddZoneModal';
+import ModifyZoneModal from './ModifyZoneModal';
+import ZonesTable from './ZonesTable';
+import ZonesMap from './ZonesMap';
 
 const key = 'zones';
 
@@ -32,6 +33,7 @@ function Zones(props) {
   }, []);
 
   const [modifyingId, setModifyingId] = React.useState(0);
+
   return (
     <>
       <Helmet>
@@ -42,15 +44,16 @@ function Zones(props) {
       <div style={{ marginLeft: '40px', marginBottom: '10px' }}>
         <h1 style={{ fontSize: 'x-large' }}> Zones List </h1>
       </div>
-{/* 
+
       <Row>
         <Col span={24}>
-          <UsersTable onModifyUser={props.handleModifyModalShow} setModifyingId={setModifyingId} />
+          {/* <ZonesTable onModifyUser={props.handleModifyModalShow} setModifyingId={setModifyingId} /> */}
+          <ZonesMap></ZonesMap>
         </Col>
-      </Row> */}
+      </Row>
 
-      {/* <AddUserModal /> */}
-      {/* <ModifyUserModal modifyingId={modifyingId} /> */}
+      {/* <AddZoneModal /> */}
+      {/* <ModifyZoneModal modifyingId={modifyingId} /> */}
       <div style={{ marginBottom: 16 }}>
         <Button type="primary" onClick={props.handleAddModalShow}>
           Add
