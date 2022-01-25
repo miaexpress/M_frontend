@@ -12,3 +12,7 @@ export function postZonesAPI(payload) {
 export function putZonesAPI(payload) {
   return request.put(`v1/zones/${payload.id}`, payload);
 }
+
+export function delZonesAPI(payload) {
+  return request.delete(`v1/zones/${payload.id}`);
+}

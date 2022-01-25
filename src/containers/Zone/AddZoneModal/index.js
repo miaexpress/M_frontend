@@ -1,85 +1,71 @@
-// import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
-// import { compose } from 'redux';
-// import { Button, Modal, Input, Icon, Upload } from 'antd';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { Button, Modal, Input, Icon, Upload } from 'antd';
 
-// import {
-//   selectAddModalVisible,
-//   selectAddModalLoading,
-//   makeSelectAccountId,
-//   makeSelectName,
-//   makeSelectPassword,
-//   makeSelectEmail,
-// } from '../zones.selectors';
-// import {
-//   handleAddModalCancelAction,
-//   onChangeAccountIdAction,
-//   onChangeEmailAction,
-//   onChangePasswordAction,
-//   onChangeNameAction,
-//   addUsersAction,
-// } from '../zones.actions';
+import {
+  selectAddZoneModalVisible,
+  selectAddZoneModalLoading,
+  makeSelectTitle,
+  makeSelectDescription,
+  makeSelectPoints,
+} from '../zones.selectors';
+import {
+  handleAddZoneModalCancelAction,
+  onChangeTitleAction,
+  onChangeDescriptionAction,
+  onChangePointsAction,
+  addZonesAction,
+} from '../zones.actions';
 
-// function AddUserModal(props) {
-//   return (
-//     <Modal
-//       title="AddUser"
-//       visible={props.addModalVisible}
-//       onOk={props.addUsers}
-//       confirmLoading={props.addModalLoading}
-//       onCancel={props.handleAddModalCancel}
-//     >
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="AccountId" onChange={props.onChangeAccountId} value={props.accountId} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Name" onChange={props.onChangeName} value={props.name} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Email" onChange={props.onChangeEmail} value={props.email} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Password" onChange={props.onChangePassword} value={props.password} />
-//       </div>
-//     </Modal>
-//   );
-// }
+function AddZoneModal(props) {
+  return (
+    <Modal
+      title="AddZone"
+      visible={props.addZoneModalVisible}
+      onOk={props.addZone}
+      confirmLoading={props.addZoneModalLoading}
+      onCancel={props.handleAddZoneModalCancel}
+    >
+      <div style={{ marginBottom: 16 }}>
+        <Input placeholder="Title" onChange={props.onChangeTitle} value={props.title} />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <Input placeholder="Description" onChange={props.onChangeDescription} value={props.description} />
+      </div>
+    </Modal>
+  );
+}
 
-// AddUserModal.propTypes = {
-//   addModalVisible: PropTypes.bool,
-//   addModalLoading: PropTypes.bool,
-//   accountId: PropTypes.string,
-//   name: PropTypes.string,
-//   email: PropTypes.string,
-//   password: PropTypes.string,
-//   addUsers: PropTypes.func,
-//   handleAddModalCancel: PropTypes.func,
-//   onChangeAccountId: PropTypes.func,
-//   onChangeName: PropTypes.func,
-//   onChangeEmail: PropTypes.func,
-//   onChangePassword: PropTypes.func,
-// };
+AddZoneModal.propTypes = {
+  addZoneModalVisible: PropTypes.bool,
+  addZoneModalLoading: PropTypes.bool,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  addZone: PropTypes.func,
+  handleAddZoneModalCancel: PropTypes.func,
+  onChangeTitle: PropTypes.func,
+  onChangeDescription: PropTypes.func,
+};
 
-// const mapStateToProps = createStructuredSelector({
-//   addModalVisible: selectAddModalVisible,
-//   addModalLoading: selectAddModalLoading,
-//   accountId: makeSelectAccountId,
-//   name: makeSelectName,
-//   email: makeSelectEmail,
-//   password: makeSelectPassword,
-// });
+const mapStateToProps = createStructuredSelector({
+  addZoneModalVisible: selectAddZoneModalVisible,
+  addZoneModalLoading: selectAddZoneModalLoading,
+  title: makeSelectTitle,
+  description: makeSelectDescription,
+  points: makeSelectPoints,
+});
 
-// const mapDispatchToProps = dispatch => ({
-//   addUsers: () => dispatch(addUsersAction()),
-//   handleAddModalCancel: () => dispatch(handleAddModalCancelAction()),
-//   onChangeAccountId: e => dispatch(onChangeAccountIdAction(e.target.value)),
-//   onChangeName: e => dispatch(onChangeNameAction(e.target.value)),
-//   onChangeEmail: e => dispatch(onChangeEmailAction(e.target.value)),
-//   onChangePassword: e => dispatch(onChangePasswordAction(e.target.value)),
-// });
+const mapDispatchToProps = dispatch => ({
+  addZone: () => dispatch(addZonesAction()),
+  handleAddZoneModalCancel: () => dispatch(handleAddZoneModalCancelAction()),
+  onChangeTitle: e => dispatch(onChangeTitleAction(e.target.value)),
+  onChangeDescription: e => dispatch(onChangeDescriptionAction(e.target.value)),
+  onChangePoints: e => dispatch(onChangePointsAction(e)),
+});
 
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// export default compose(withConnect, memo)(AddUserModal);
+export default compose(withConnect, memo)(AddZoneModal);

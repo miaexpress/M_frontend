@@ -1,6 +1,6 @@
-import Zone from 'containers/Zone'
+import Zone from 'containers/Zone';
 import SignIn from 'containers/SignIn';
-// import SignUp from 'containers/SignUp';
+import SignUp from 'containers/SignUp';
 import NotFound from 'containers/NotFound';
 import SignOut from 'containers/SignOut';
 import Users from 'containers/Users';
@@ -20,12 +20,12 @@ const mainRoutes = [
     icon: 'login',
     component: SignIn,
   },
-  // {
-  //   path: '/signup',
-  //   name: 'Sign Up',
-  //   hide: true,
-  //   component: SignUp,
-  // },
+  {
+    path: '/signup',
+    name: 'Sign Up',
+    hide: true,
+    component: SignUp,
+  },
   {
     path: '/signout',
     name: 'Sign Out',
@@ -44,6 +44,7 @@ const mainRoutes = [
     name: 'Others',
     icon: 'close-circle',
     auth: true,
+    hide: true,
     component: NotFound,
   },
 ];

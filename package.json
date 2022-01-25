@@ -15,6 +15,7 @@
     "babel-plugin-import": "^1.13.0",
     "connected-react-router": "^6.6.1",
     "customize-cra": "^0.9.1",
+    "dayjs": "^1.10.7",
     "dotenv": "^14.2.0",
     "google-map-react": "^2.1.10",
     "google-maps": "^4.3.3",

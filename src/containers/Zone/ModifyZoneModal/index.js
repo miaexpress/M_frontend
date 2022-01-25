@@ -1,86 +1,72 @@
-// import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
-// import { compose } from 'redux';
-// import { Button, Modal, Input, Icon, Upload } from 'antd';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { Button, Modal, Input, Icon, Upload } from 'antd';
 
-// import {
-//   selectModifyModalVisible,
-//   selectModifyModalLoading,
-//   makeSelectAccountId,
-//   makeSelectName,
-//   makeSelectPassword,
-//   makeSelectEmail,
-// } from '../zones.selectors';
-// import {
-//   handleModifyModalCancelAction,
-//   onChangeAccountIdAction,
-//   onChangeEmailAction,
-//   onChangePasswordAction,
-//   onChangeNameAction,
-//   modifyUsersAction,
-// } from '../zones.actions';
+import {
+  selectModifyZoneModalVisible,
+  selectModifyZoneModalLoading,
+  makeSelectTitle,
+  makeSelectDescription,
+} from '../zones.selectors';
+import {
+  handleModifyZoneModalCancelAction,
+  onChangeTitleAction,
+  onChangeDescriptionAction,
+  modifyZonesAction,
+} from '../zones.actions';
 
-// function ModifyUserModal(props) {
-//   return (
-//     <Modal
-//       title="ModifyUser"
-//       visible={props.modifyModalVisible}
-//       onOk={()=>props.modifyUsers(props.modifyingId)}
-//       confirmLoading={props.modifyModalLoading}
-//       onCancel={props.handleModifyModalCancel}
-//     >
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="AccountId" onChange={props.onChangeAccountId} value={props.accountId} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Name" onChange={props.onChangeName} value={props.name} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Email" onChange={props.onChangeEmail} value={props.email} />
-//       </div>
-//       <div style={{ marginBottom: 16 }}>
-//         <Input placeholder="Password" onChange={props.onChangePassword} value={props.password} />
-//       </div>
-//     </Modal>
-//   );
-// }
+function ModifyZoneModal(props) {
+  React.useEffect(() => {
+    console.log('modifyingId', props.modifyingId);
+  }, [props.modifyingId]);
+  return (
+    <Modal
+      title="ModifyZone"
+      visible={props.modifyZoneModalVisible}
+      onOk={() => props.modifyZones(props.modifyingId)}
+      confirmLoading={props.modifyZoneModalLoading}
+      onCancel={props.handleModifyZoneModalCancel}
+    >
+      <div style={{ marginBottom: 16 }}>
+        <Input placeholder="Title" onChange={props.onChangeTitle} value={props.title} />
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <Input placeholder="Description" onChange={props.onChangeDescription} value={props.descrpiton} />
+      </div>
+    </Modal>
+  );
+}
 
-// ModifyUserModal.propTypes = {
-//   modifyingId: PropTypes.number,
-//   modifyModalVisible: PropTypes.bool,
-//   modifyModalLoading: PropTypes.bool,
-//   accountId: PropTypes.string,
-//   name: PropTypes.string,
-//   email: PropTypes.string,
-//   password: PropTypes.string,
-//   modifyUsers: PropTypes.func,
-//   handleAddModalCancel: PropTypes.func,
-//   onChangeAccountId: PropTypes.func,
-//   onChangeName: PropTypes.func,
-//   onChangeEmail: PropTypes.func,
-//   onChangePassword: PropTypes.func,
-// };
+ModifyZoneModal.propTypes = {
+  modifyingId: PropTypes.number,
+  modifyZoneModalVisible: PropTypes.bool,
+  modifyZoneModalLoading: PropTypes.bool,
+  title: PropTypes.string,
+  descrpiton: PropTypes.string,
 
-// const mapStateToProps = createStructuredSelector({
-//   modifyModalVisible: selectModifyModalVisible,
-//   modifyModalLoading: selectModifyModalLoading,
-//   accountId: makeSelectAccountId,
-//   name: makeSelectName,
-//   email: makeSelectEmail,
-//   password: makeSelectPassword,
-// });
+  modifyZones: PropTypes.func,
+  handleModifyZoneModalCancel: PropTypes.func,
+  onChangeTitle: PropTypes.func,
+  onChangeDescription: PropTypes.func,
+};
 
-// const mapDispatchToProps = dispatch => ({
-//   modifyUsers: (id) => dispatch(modifyUsersAction(id)),
-//   handleModifyModalCancel: () => dispatch(handleModifyModalCancelAction()),
-//   onChangeAccountId: e => dispatch(onChangeAccountIdAction(e.target.value)),
-//   onChangeName: e => dispatch(onChangeNameAction(e.target.value)),
-//   onChangeEmail: e => dispatch(onChangeEmailAction(e.target.value)),
-//   onChangePassword: e => dispatch(onChangePasswordAction(e.target.value)),
-// });
+const mapStateToProps = createStructuredSelector({
+  modifyZoneModalVisible: selectModifyZoneModalVisible,
+  modifyZoneModalLoading: selectModifyZoneModalLoading,
+  title: makeSelectTitle,
+  descrpiton: makeSelectDescription,
+});
 
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const mapDispatchToProps = dispatch => ({
+  modifyZones: id => dispatch(modifyZonesAction(id)),
+  handleModifyZoneModalCancel: () => dispatch(handleModifyZoneModalCancelAction()),
+  onChangeTitle: e => dispatch(onChangeTitleAction(e.target.value)),
+  onChangeDescription: e => dispatch(onChangeDescriptionAction(e.target.value)),
+});
 
-// export default compose(withConnect, memo)(ModifyUserModal);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect, memo)(ModifyZoneModal);

@@ -24,7 +24,8 @@ function ZonesMap(props) {
   /* ------------------ */
   /* -     Const     - */
   /* ------------------ */
-
+  const google = props.google;
+  const googleMap = props.googleMap;
   /* ------------------ */
   /* -     Handler     - */
   /* ------------------ */
@@ -32,20 +33,26 @@ function ZonesMap(props) {
   /* ------------------ */
   /* -     Render     - */
   /* ------------------ */
-  //   if (props.zonesList.length !== 0) {
   return (
     <div>
-      <div id="map" style={{ height: '100vh', width: '100%' }}></div>
-      <GoogleMapComp />
+      <div id="map" style={{ height: '70vh', width: '100%' }}>
+        <GoogleMapComp
+          setGoogle={props.setGoogle}
+          google={google}
+          googleMap={googleMap}
+          setGoogleMap={props.setGoogleMap}
+        />
+      </div>
     </div>
   );
-  //   } else {
-  //     return <React.Fragment />;
-  //   }
 }
 
 ZonesMap.propTypes = {
   zonesList: PropTypes.array,
+  google: PropTypes.object,
+  googleMap: PropTypes.object,
+  setGoogle: PropTypes.func,
+  setGoogleMap: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

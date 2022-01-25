@@ -9,8 +9,10 @@ import { Layout, Icon } from 'antd';
 import { makeSelectUser } from 'global.selectors';
 
 function Header(props) {
-  const userEmail = props.user ? props.user.email | '' : 'unknowen';
-  const userId = props.user ? props.user.id | '' : 'unknowen';
+  const userEmail = props.user ? props.user.email : 'unknown';
+  const userId = props.user ? props.user.id : 'unknown';
+  const permisssion = props.user ? props.user.permissions : 'unknown';
+
   return (
     <Layout.Header style={{ height: '48px', lineHeight: '48px', padding: '0 30px' }}>
       <Link to="/">
@@ -27,7 +29,7 @@ function Header(props) {
           display: props.user ? 'initial' : 'none',
         }}
       >
-        <Icon type="user" /> {`Email:${userEmail} Id:${userId}`}
+        <Icon type="user" /> {`Permission: ${permisssion} Id: ${userId}`}
       </span>
     </Layout.Header>
   );

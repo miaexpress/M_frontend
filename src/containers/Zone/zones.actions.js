@@ -5,6 +5,9 @@ import {
   ADD_ZONES_REQUEST,
   ADD_ZONES_SUCCESS,
   ADD_ZONES_FAILURE,
+  DEL_ZONES_REQUEST,
+  DEL_ZONES_SUCCESS,
+  DEL_ZONES_FAILURE,
   MODIFY_ZONES_REQUEST,
   MODIFY_ZONES_SUCCESS,
   MODIFY_ZONES_FAILURE,
@@ -24,6 +27,10 @@ export const getZonesFailure = payload => ({ type: GET_ZONES_FAILURE, payload })
 export const addZonesAction = payload => ({ type: ADD_ZONES_REQUEST, payload });
 export const addZonesSuccess = payload => ({ type: ADD_ZONES_SUCCESS, payload });
 export const addZonesFailure = payload => ({ type: ADD_ZONES_FAILURE, payload });
+
+export const delZonesAction = payload => ({ type: DEL_ZONES_REQUEST, payload });
+export const delZonesSuccess = payload => ({ type: DEL_ZONES_SUCCESS, payload });
+export const delZonesFailure = payload => ({ type: DEL_ZONES_FAILURE, payload });
 
 export const modifyZonesAction = payload => ({ type: MODIFY_ZONES_REQUEST, payload });
 export const modifyZonesSuccess = payload => ({ type: MODIFY_ZONES_SUCCESS, payload });
