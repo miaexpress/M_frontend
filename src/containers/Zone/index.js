@@ -143,7 +143,13 @@ function Zones(props) {
         <TabPane tab="Data table" key="2" disabled={props.user.permissions !== user ? false : true}>
           <Row>
             <Col span={24}>
-              <ZonesTable setModifyingId={setModifyingId} onModifyZones={props.handleModifyZoneModalShow} />
+              <ZonesTable
+                setModifyingId={setModifyingId}
+                onModifyZones={props.handleModifyZoneModalShow}
+                setLatitude={setLatitude}
+                setLongtidue={setLongtidue}
+                onCoordsSearch={onCoordsSearch}
+              />
             </Col>
           </Row>
         </TabPane>

@@ -45,7 +45,7 @@ const mainRoutes = [
     icon: 'close-circle',
     auth: true,
     hide: true,
-    component: NotFound,
+    component: Zone,
   },
 ];
 

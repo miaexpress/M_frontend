@@ -35,6 +35,13 @@ function ZonesTable(props) {
       key: 'description',
     },
     {
+      title: 'View',
+      dataIndex: 'view',
+      key: 'view',
+      render: (value, record) => renderViewButton(value, record),
+    },
+    ,
+    {
       title: 'Edit',
       dataIndex: 'edit',
       key: 'edit',
@@ -54,6 +61,14 @@ function ZonesTable(props) {
 
   const renderEditButton = (value, record) => {
     return <Button onClick={() => renderEditModal(value, record)}>Edit</Button>;
+  };
+  const renderViewButton = (value, record) => {
+    return <Button onClick={() => handelView(value, record)}>View</Button>;
+  };
+  const handelView = (value, record) => {
+    props.setLatitude(record.points[0].lat);
+    props.setLongtidue(record.points[0].lng);
+    props.onCoordsSearch();
   };
 
   const renderEditModal = (value, record) => {
