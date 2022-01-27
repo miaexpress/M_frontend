@@ -18,6 +18,7 @@ import {
   delZonesAction,
 } from '../zones.actions';
 import { Admin } from 'utils/enum';
+import { calCenter } from 'utils/calCenter';
 
 function ZonesTable(props) {
   /* ------------------ */
@@ -68,11 +69,13 @@ function ZonesTable(props) {
   const handelView = (value, record) => {
     props.setLatitude(record.points[0].lat);
     props.setLongtidue(record.points[0].lng);
-    props.onCoordsSearch();
+    setTimeout(() => {
+      props.onCoordsSearch(12, calCenter(record.points) || { lng: record.points[0].lng, lat: record.points[0].lat });
+      props.setTabsKey('1');
+    }, 50);
   };
 
   const renderEditModal = (value, record) => {
-    console.log(value, record);
     props.onModifyZones();
     props.setModifyingId(record.id);
     props.onChangeTitle(record.title);

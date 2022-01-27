@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { Loader, LoaderOptions } from 'google-maps';
 import { handleAddZoneModalShowAction, onChangePointsAction } from '../../zones.actions';
 import { selectZonesList } from '../../zones.selectors';
+import { calCenter } from '../../../../utils/calCenter';
 import dayjs from 'dayjs';
 
 function GoogleMapComp(props) {
@@ -38,8 +39,7 @@ function GoogleMapComp(props) {
 
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
-      //   center: { lat: -33.4489, lng: -70.6693 },
-      center: { lat: latestZone.points[0].lat, lng: latestZone.points[0].lng },
+      center: calCenter(latestZone.points) || { lat: latestZone.points[0].lat, lng: latestZone.points[0].lng },
     });
 
     props.setGoogleMap(map);

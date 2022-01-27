@@ -9,7 +9,13 @@ import { Input, Icon, Button, Space, Switch } from 'antd';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { makeSelectName, makeSelectEmail, makeSelectPassword, makeSelectPermissions } from './signup.selectors';
-import { postSignUpAction, onChangeNameAction, onChangeEmailAction, onChangePasswordAction, onChangePermissionsAction } from './signup.actions';
+import {
+  postSignUpAction,
+  onChangeNameAction,
+  onChangeEmailAction,
+  onChangePasswordAction,
+  onChangePermissionsAction,
+} from './signup.actions';
 import reducer from './signup.reducer';
 import saga from './signup.saga';
 
@@ -55,12 +61,8 @@ function SignUp(props) {
           value={props.password}
         />
       </div>
-      <div style={{ marginBottom: 16 }}> 
-        <Switch 
-        checkedChildren="Admin" 
-        unCheckedChildren="User" 
-        defaultChecked
-        onChange={props.onChangePermissions} /> 
+      <div style={{ marginBottom: 16 }}>
+        <Switch checkedChildren="Admin" unCheckedChildren="User" defaultChecked onChange={props.onChangePermissions} />
       </div>
       <Space>
         <Button type="primary" onClick={props.postSignUp}>
@@ -88,14 +90,12 @@ const mapStateToProps = createStructuredSelector({
   permissions: makeSelectPermissions(),
 });
 
-
-
 const mapDispatchToProps = dispatch => ({
   postSignUp: () => dispatch(postSignUpAction()),
   onChangeName: e => dispatch(onChangeNameAction(e.target.value)),
   onChangeEmail: e => dispatch(onChangeEmailAction(e.target.value)),
   onChangePassword: e => dispatch(onChangePasswordAction(e.target.value)),
-  onChangePermissions: e => dispatch(onChangePermissionsAction(e===true?'Admin':'Human')),
+  onChangePermissions: e => dispatch(onChangePermissionsAction(e === true ? 'Admin' : 'user')),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

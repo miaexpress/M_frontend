@@ -1,9 +1,10 @@
-import Zone from 'containers/Zone';
+import Zones from 'containers/Zones';
 import SignIn from 'containers/SignIn';
 import SignUp from 'containers/SignUp';
 import NotFound from 'containers/NotFound';
 import SignOut from 'containers/SignOut';
 import Users from 'containers/Users';
+import Orders from 'containers/Orders';
 
 const mainRoutes = [
   {
@@ -11,9 +12,18 @@ const mainRoutes = [
     path: '/',
     name: 'Home',
     icon: 'home',
-    component: Zone,
+    component: Zones,
     auth: true,
   },
+  {
+    exact: true,
+    path: '/orders',
+    name: 'Order',
+    icon: 'order',
+    component: Orders,
+    auth: true,
+  },
+
   {
     path: '/signin',
     name: 'Sign In',
@@ -45,7 +55,16 @@ const mainRoutes = [
     icon: 'close-circle',
     auth: true,
     hide: true,
-    component: Zone,
+    component: Zones,
+  },
+  ,
+  {
+    path: '/zones/:location',
+    name: 'zonesNavigate',
+    icon: 'close-circle',
+    auth: true,
+    hide: true,
+    component: Zones,
   },
 ];
 

@@ -1,4 +1,3 @@
-import { HANDLE_MODAL_SHOW } from 'containers/Board/board.constants';
 import produce from 'immer';
 import { find } from 'lodash';
 import { user } from 'utils/enum';
