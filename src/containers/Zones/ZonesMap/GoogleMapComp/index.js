@@ -40,7 +40,7 @@ function GoogleMapComp(props) {
       props.zonesList.length !== 0
         ? calCenter(latestZone.points)
         : {
-            lon: -35.6808829,
+            lat: -35.6808829,
             lng: -71.6085956,
           };
     map = new google.maps.Map(document.getElementById('map'), {
