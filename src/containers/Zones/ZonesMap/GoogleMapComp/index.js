@@ -36,13 +36,16 @@ function GoogleMapComp(props) {
     props.setGoogle(google);
 
     const latestZone = props.zonesList.sort((a, b) => dayjs(b.updatedAt) - dayjs(a.updatedAt))[0];
-
+    const initLngLat =
+      props.zonesList.length !== 0
+        ? calCenter(latestZone.points)
+        : {
+            lon: -35.6808829,
+            lng: -71.6085956,
+          };
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
-      center: calCenter(latestZone.points) || { lat: latestZone.points[0].lat, lng: latestZone.points[0].lng } || {
-          lon: -35.6808829,
-          lng: -71.6085956,
-        },
+      center: initLngLat,
     });
 
     props.setGoogleMap(map);
