@@ -1,23 +1,10 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Table, Button } from 'antd';
 import { selectZonesList } from '../zones.selectors';
-import {
-  handleAddZoneModalShowAction,
-  handleAddZoneModalCancelAction,
-  handleModifyZoneModalCancelAction,
-  handleModifyZoneModalShowAction,
-  onChangeDescriptionAction,
-  onChangeTitleAction,
-  onChangePointsAction,
-  modifyZonesAction,
-} from '../zones.actions';
-import instance from 'utils/request';
-// const { Loader } = require('google-maps');
-import { Loader, LoaderOptions } from 'google-maps';
+
 import GoogleMapComp from './GoogleMapComp';
 
 function ZonesMap(props) {

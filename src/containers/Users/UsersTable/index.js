@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Table, Checkbox, Button, message, Popconfirm } from 'antd';
+import { Table, Button, Popconfirm } from 'antd';
 import { selectUsersList } from '../users.selectors';
 import {
   handleModifyModalCancelAction,

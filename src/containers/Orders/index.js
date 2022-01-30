@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Row, Col, Button, Tabs, Input, message, Spin, Progress, Tag } from 'antd';
+import { Row, Col, Button, Tabs, Input, message, Spin, Tag } from 'antd';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import {
@@ -95,7 +95,7 @@ function Orders(props) {
             });
             console.log('zone', zone, latlng);
             setZoneResult(zone);
-          } else if (props.zonesList && props.zonesList.length == 0) {
+          } else if (props.zonesList && props.zonesList.length === 0) {
             message.warning('zones data error, please set or re-read zones data');
           } else {
             message.error('zones data error, please read zones data in Home page');
@@ -122,9 +122,9 @@ function Orders(props) {
 
       if (checkPoint.lat > Math.min(p1.lat, p2.lat) && checkPoint.lat <= Math.max(p1.lat, p2.lat)) {
         if (checkPoint.lat <= Math.max(p1.lat, p2.lat)) {
-          if (p1.lat != p2.lat) {
+          if (p1.lat !== p2.lat) {
             xinters = ((checkPoint.lat - p1.lat) * (p2.lat - p1.lat)) / (p2.lat - p1.lat) + p1.lat;
-            if (p1.lat == p2.lat || checkPoint.lat <= xinters) {
+            if (p1.lat === p2.lat || checkPoint.lat <= xinters) {
               counter++;
             }
           }
@@ -132,7 +132,7 @@ function Orders(props) {
       }
       p1 = p2;
     }
-    if (counter % 2 == 0) {
+    if (counter % 2 === 0) {
       return false;
     } else {
       return true;

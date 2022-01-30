@@ -51,7 +51,6 @@ import {
   onChangeQuantityAction,
   modifyOrdersAction,
 } from '../orders.actions';
-import { Admin, user } from 'utils/enum';
 
 function ModifyOrderModal(props) {
   return (

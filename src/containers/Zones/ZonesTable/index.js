@@ -7,10 +7,7 @@ import { Table, Popconfirm, Button } from 'antd';
 import { selectZonesList } from '../zones.selectors';
 import { makeSelectUser } from 'global.selectors';
 import {
-  handleAddZoneModalShowAction,
-  handleAddZoneModalCancelAction,
   handleModifyZoneModalCancelAction,
-  handleModifyZoneModalShowAction,
   onChangeDescriptionAction,
   onChangeTitleAction,
   onChangePointsAction,

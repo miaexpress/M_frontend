@@ -4,27 +4,19 @@ import {
   getUsersFailure,
   addUsersFailure,
   addUsersSuccess,
-  addUsersAction,
   delUsersSuccess,
   delUsersFailure,
   getUsersAction,
   modifyUsersSuccess,
   modifyUsersFailure,
 } from './users.actions';
-import {
-  GET_USERS_REQUEST,
-  ADD_USERS_REQUEST,
-  MODIFY_USERS_REQUEST,
-  DEL_USERS_REQUEST,
-  DEL_USERS_SUCCESS,
-} from './users.constants';
+import { GET_USERS_REQUEST, ADD_USERS_REQUEST, MODIFY_USERS_REQUEST, DEL_USERS_REQUEST } from './users.constants';
 import { getUsersAPI, postUsersAPI, putUsersAPI, delUsersAPI } from './users.api';
 import {
   makeSelectAccountId,
   makeSelectName,
   makeSelectEmail,
   makeSelectPassword,
-  makeSelectUsersById,
   makeSelectPermissions,
 } from './users.selectors';
 

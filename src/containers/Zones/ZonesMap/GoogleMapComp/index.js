@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Loader, LoaderOptions } from 'google-maps';
+import { Loader } from 'google-maps';
 import { handleAddZoneModalShowAction, onChangePointsAction } from '../../zones.actions';
 import { selectZonesList } from '../../zones.selectors';
 import { calCenter } from '../../../../utils/calCenter';

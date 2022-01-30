@@ -9,7 +9,6 @@ import { Layout, Icon } from 'antd';
 import { makeSelectUser } from 'global.selectors';
 
 function Header(props) {
-  const userEmail = props.user ? props.user.email : 'unknown';
   const userId = props.user ? props.user.id : 'unknown';
   const permisssion = props.user ? props.user.permissions : 'unknown';
 

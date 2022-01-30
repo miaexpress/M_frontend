@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Button, Modal, Input, Icon, Upload, Switch } from 'antd';
+import { Modal, Input, Switch } from 'antd';
 
 import {
   selectModifyModalVisible,

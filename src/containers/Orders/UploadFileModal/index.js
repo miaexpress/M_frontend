@@ -4,12 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Button, Modal, Input, Icon, Upload, Tag, InputNumber } from 'antd';
-import { Admin, user } from 'utils/enum';
 
 import {
-  selectAddOrderModalVisible,
-  selectAddOrderModalLoading,
   makeSelectMAWB,
   makeSelectContainerNumber,
   makeSelectTrackingNumber,
@@ -31,7 +27,6 @@ import {
   makeSelectQuantity,
 } from '../orders.selectors';
 import {
-  handleAddOrderModalCancelAction,
   onChangeMAWBAction,
   onChangeContainerNumberAction,
   onChangeTrackingNumberAction,
@@ -59,8 +54,6 @@ function UploadFileModal(props) {
     const input = document.getElementById('xlsxInput');
     input.addEventListener('change', () => {
       props.setUploadingPercent(0);
-
-      let isDetailInfoSheet = false;
       props.setFiles(input.files || []);
       readXlsxFile(input.files[0], { getSheets: true }).then(sheets => {
         isDetailInfoSheet = sheets.find(sheet => sheet === 'Detail info') !== undefined ? true : false;
@@ -69,7 +62,7 @@ function UploadFileModal(props) {
         for (let index = 0; index < rows.length; index++) {
           props.setUploadingPercent(Math.ceil(index / rows.length) * 100);
 
-          if (index == 1) {
+          if (index === 1) {
             if (rows[index].length !== 19) {
               return;
             }
