@@ -121,10 +121,10 @@ function Orders(props) {
       p2 = polygonPoints[i % pointCount];
 
       if (checkPoint.lat > Math.min(p1.lat, p2.lat) && checkPoint.lat <= Math.max(p1.lat, p2.lat)) {
-        if (checkPoint.lat <= Math.max(p1.lat, p2.lat)) {
+        if (checkPoint.lng <= Math.max(p1.lng, p2.lng)) {
           if (p1.lat !== p2.lat) {
-            xinters = ((checkPoint.lat - p1.lat) * (p2.lat - p1.lat)) / (p2.lat - p1.lat) + p1.lat;
-            if (p1.lat === p2.lat || checkPoint.lat <= xinters) {
+            xinters = ((checkPoint.lat - p1.lat) * (p2.lng - p1.lng)) / (p2.lat - p1.lat) + p1.lng;
+            if (p1.lng === p2.lng || checkPoint.lng <= xinters) {
               counter++;
             }
           }
