@@ -51,6 +51,7 @@ import {
 
 function UploadFileModal(props) {
   async function readFile() {
+    let isDetailInfoSheet;
     const input = document.getElementById('xlsxInput');
     input.addEventListener('change', () => {
       props.setUploadingPercent(0);
