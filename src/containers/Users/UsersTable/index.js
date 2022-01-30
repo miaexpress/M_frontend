@@ -15,7 +15,9 @@ import {
   onChangePermissionsAction,
   delUsersAction,
 } from '../users.actions';
-import { Admin } from 'utils/enum';
+import { makeSelectUser } from 'global.selectors';
+
+import { Admin, user } from 'utils/enum';
 
 function UsersTable(props) {
   /* ------------------ */
@@ -67,9 +69,9 @@ function UsersTable(props) {
         onConfirm={() => handleDelete(record.id)}
         okText="Yes"
         cancelText="No"
-        disabled={props.user.permissions !== Admin}
+        disabled={record.permissions !== user || props.user.permissions !== Admin}
       >
-        <Button disabled={record.permissions !== Admin}>Delete</Button>
+        <Button disabled={record.permissions !== user || props.user.permissions !== Admin}>Delete</Button>
       </Popconfirm>
     );
   };
@@ -106,6 +108,7 @@ UsersTable.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
+  user: makeSelectUser(),
   usersList: selectUsersList,
 });
 
