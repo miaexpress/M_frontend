@@ -14,6 +14,8 @@ const selectAddOrderModalLoading = createSelector(selectOrdersDomain, substate =
 const selectModifyOrderModalVisible = createSelector(selectOrdersDomain, substate => substate.modifyOrderModalVisible);
 const selectModifyOrderModalLoading = createSelector(selectOrdersDomain, substate => substate.modifyOrderModalLoading);
 
+const selectTrackOrder = createSelector(selectOrdersDomain, substate => substate.trackOrder);
+
 const makeSelectMAWB = createSelector(selectOrdersDomain, substate => substate.orderForm.MAWB);
 const makeSelectContainerNumber = createSelector(selectOrdersDomain, substate => substate.orderForm.containerNumber);
 const makeSelectTrackingNumber = createSelector(selectOrdersDomain, substate => substate.orderForm.trackingNumber);
@@ -55,6 +57,7 @@ export {
   selectAddOrderModalLoading,
   selectModifyOrderModalVisible,
   selectModifyOrderModalLoading,
+  selectTrackOrder,
   makeSelectMAWB,
   makeSelectContainerNumber,
   makeSelectTrackingNumber,

@@ -23,7 +23,6 @@ const mainRoutes = [
     component: Orders,
     auth: true,
   },
-
   {
     path: '/signin',
     name: 'Sign In',

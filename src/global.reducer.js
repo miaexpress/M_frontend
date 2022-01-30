@@ -10,7 +10,6 @@ export const initialState = {
   ...userState,
 };
 
-
 /* eslint-disable default-case, no-param-reassign */
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {

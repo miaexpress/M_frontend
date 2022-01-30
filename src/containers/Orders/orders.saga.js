@@ -9,9 +9,17 @@ import {
   getOrdersAction,
   modifyOrdersSuccess,
   modifyOrdersFailure,
+  trackOrdersFailure,
+  trackOrdersSuccess,
 } from './orders.actions';
-import { GET_ORDERS_REQUEST, ADD_ORDER_REQUEST, MODIFY_ORDER_REQUEST, DEL_ORDER_REQUEST } from './orders.constants';
-import { getOrdersAPI, postOrdersAPI, putOrdersAPI, delOrdersAPI } from './orders.api';
+import {
+  GET_ORDERS_REQUEST,
+  ADD_ORDER_REQUEST,
+  MODIFY_ORDER_REQUEST,
+  DEL_ORDER_REQUEST,
+  TRACK_ORDER_REQUEST,
+} from './orders.constants';
+import { getOrdersAPI, getOrderByTrackingNumberAPI, postOrdersAPI, putOrdersAPI, delOrdersAPI } from './orders.api';
 import {
   makeSelectMAWB,
   makeSelectContainerNumber,
@@ -41,6 +49,15 @@ export function* getOrdersSaga() {
     yield put(getOrdersSuccess(ordersList));
   } catch (error) {
     yield put(getOrdersFailure(error));
+  }
+}
+
+export function* trackOrderSaga({ payload: trackingNumber }) {
+  try {
+    const order = yield call(getOrderByTrackingNumberAPI, { trackingNumber: trackingNumber });
+    yield put(trackOrdersSuccess(order));
+  } catch (error) {
+    yield put(trackOrdersFailure(error));
   }
 }
 
@@ -160,4 +177,5 @@ export default function* usersSaga() {
   yield takeLatest(ADD_ORDER_REQUEST, postOrdersSaga);
   yield takeLatest(MODIFY_ORDER_REQUEST, putOrdersSaga);
   yield takeLatest(DEL_ORDER_REQUEST, delOrdersSaga);
+  yield takeLatest(TRACK_ORDER_REQUEST, trackOrderSaga);
 }

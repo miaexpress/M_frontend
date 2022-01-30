@@ -2,7 +2,11 @@ import request from 'utils/request';
 
 export function getOrdersAPI() {
   // return request.get('v1/users?limit=100');
-  return request.get('v1/orders');
+  return request.get('v1/orders?limit=100');
+}
+
+export function getOrderByTrackingNumberAPI(payload) {
+  return request.get(`v1/orders/track/${payload.trackingNumber}`);
 }
 
 export function postOrdersAPI(payload) {

@@ -2,6 +2,10 @@ export const GET_ORDERS_REQUEST = 'orders/GET_ORDERS_REQUEST';
 export const GET_ORDERS_SUCCESS = 'orders/GET_ORDERS_SUCCESS';
 export const GET_ORDERS_FAILURE = 'orders/GET_ORDERS_FAILURE';
 
+export const TRACK_ORDER_REQUEST = 'orders/TRACK_ORDER_REQUEST';
+export const TRACK_ORDER_SUCCESS = 'orders/TRACK_ORDER_SUCCESS';
+export const TRACK_ORDER_FAILURE = 'orders/TRACK_ORDER_FAILURE';
+
 export const ADD_ORDER_REQUEST = 'orders/ADD_ORDER_REQUEST';
 export const ADD_ORDER_SUCCESS = 'orders/ADD_ORDER_SUCCESS';
 export const ADD_ORDER_FAILURE = 'orders/ADD_ORDER_FAILURE';

@@ -36,6 +36,7 @@ import {
   ON_CHANGE_VALUE,
   ON_CHANGE_DESCRIPTION,
   ON_CHANGE_QUANTITY,
+  TRACK_ORDER_SUCCESS,
 } from './orders.constants';
 
 export const initialState = {
@@ -44,6 +45,7 @@ export const initialState = {
   addOrderModalLoading: false,
   modifyOrderModalVisible: false,
   modifyOrderModalLoading: false,
+  trackorder: {},
   orderForm: {
     MAWB: '',
     countainerNumber: '',
@@ -73,6 +75,9 @@ const ordersReducer = (state = initialState, action) =>
     switch (action.type) {
       case GET_ORDERS_SUCCESS:
         draft.ordersList = action.payload.data;
+        break;
+      case TRACK_ORDER_SUCCESS:
+        draft.trackOrder = action.payload.data;
         break;
       case ADD_ORDER_REQUEST:
         draft.addOrderModalLoading = true;
