@@ -15,7 +15,7 @@ import {
   onChangePermissionsAction,
   delUsersAction,
 } from '../users.actions';
-import { user } from 'utils/enum';
+import { Admin } from 'utils/enum';
 
 function UsersTable(props) {
   /* ------------------ */
@@ -67,8 +67,9 @@ function UsersTable(props) {
         onConfirm={() => handleDelete(record.id)}
         okText="Yes"
         cancelText="No"
+        disabled={props.user.permissions !== Admin}
       >
-        <Button disabled={record.permissions !== user}>Delete</Button>
+        <Button disabled={record.permissions !== Admin}>Delete</Button>
       </Popconfirm>
     );
   };

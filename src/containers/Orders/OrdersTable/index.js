@@ -29,7 +29,7 @@ import {
   modifyOrdersAction,
   delOrdersAction,
 } from '../orders.actions';
-import { user } from 'utils/enum';
+import { Admin } from 'utils/enum';
 import { makeSelectUser } from 'global.selectors';
 import { Link } from 'react-router-dom';
 
@@ -173,8 +173,9 @@ function OrdersTable(props) {
         onConfirm={() => handleDelete(record.id)}
         okText="Yes"
         cancelText="No"
+        disabled={props.user.permissions !== Admin}
       >
-        <Button disabled={props.user.permissions !== user}>Delete</Button>
+        <Button disabled={props.user.permissions !== Admin}>Delete</Button>
       </Popconfirm>
     );
   };

@@ -87,6 +87,7 @@ function ZonesTable(props) {
         onConfirm={() => handleDelete(record.id)}
         okText="Yes"
         cancelText="No"
+        disabled={props.user.permissions !== Admin}
       >
         <Button disabled={props.user.permissions !== Admin}>Delete</Button>
       </Popconfirm>
