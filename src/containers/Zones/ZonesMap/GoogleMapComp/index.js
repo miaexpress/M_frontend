@@ -21,7 +21,7 @@ function GoogleMapComp(props) {
   useEffect(() => {
     // You need to restrict it at some point
     // This is just dummy code and should be replaced by actual
-    if (document.getElementById('map') && props.zonesList.length !== 0) {
+    if (document.getElementById('map')) {
       initMap();
     } else {
       console.log('map div is ' + document.getElementById('map'));
